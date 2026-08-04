@@ -1,6 +1,7 @@
 import type {Metadata} from "next";
 import {GeistSans} from 'geist/font/sans';
 import {GeistMono} from 'geist/font/mono';
+import {antonio, leagueSpartan} from "@/styles/fonts";
 import "./globals.css";
 import React from "react";
 import StarsBackground from '@/components/layout/stars-background';
@@ -16,9 +17,9 @@ export default function RootLayout({children}: RootLayoutProps) {
     return (
         <html
             lang="en"
-            className={`${GeistSans.className} ${GeistMono.className} h-full antialiased select-none`}
+            className={`${GeistSans.className} ${GeistMono.className} ${antonio.variable} ${leagueSpartan.variable} min-h-full antialiased select-none`}
         >
-        <body className="min-h-full flex flex-col relative bg-slate-900 overflow-hidden">
+        <body className=" flex flex-col relative bg-slate-900 overflow-hidden">
         <StarsBackground/>
         <Header/>
         {children}
