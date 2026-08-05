@@ -19,7 +19,7 @@ export default function RootLayout({children}: RootLayoutProps) {
             lang="en"
             className={`${GeistSans.className} ${GeistMono.className} ${antonio.variable} ${leagueSpartan.variable} min-h-full antialiased select-none`}
         >
-        <body className=" flex flex-col relative bg-slate-900 overflow-hidden">
+        <body className=" flex flex-col relative bg-slate-900 ">
         <StarsBackground/>
         <Header/>
         {children}

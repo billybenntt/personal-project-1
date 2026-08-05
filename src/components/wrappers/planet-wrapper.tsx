@@ -1,78 +1,140 @@
+'use client'
 import Image from "next/image"
+import {data} from '@/content/planets'
+import {useState} from "react";
 
-type StatBoxProps = {
-    label: string
-    value: string
-}
-
-function StatBox({label, value}: StatBoxProps) {
-    return (
-        <div
-            className="flex flex-col items-center justify-center gap-1 p-4 border-b sm:border-b-0 sm:border-r last:border-none">
-            <span
-                className="text-xl uppercase font-bold font-heading tracking-wider text-muted-foreground">{label}</span>
-            <span className="text-3xl font-extrabold font-heading">{value}</span>
-        </div>
-    )
-}
-
-const planetStats: StatBoxProps[] = [
-    {label: "Rotation time", value: "0.99 Days"},
-    {label: "Revolution time", value: "365.26 Days"},
-    {label: "Radius", value: "6,371 KM"},
-    {label: "Average temp", value: "16°c"},
-]
 
 function Wrapper() {
+
+    const [section, setSection] = useState<"overview" | "structure" | "geology">("overview")
+
+    function handleSectionChange(value: "overview" | "structure" | "geology") {
+        setSection(value)
+        console.log(value)
+    }
+
+
+    console.log(data)
+
+    const planet = data.find((item) => item.name.toLowerCase() === "earth"?.toLowerCase()
+    )
+
+
+    console.log(planet)
+
+
     return (
-        <section
-            className="text-white w-full min-h-128 grid grid-cols-1 grid-rows-[auto_auto_auto] md:grid-cols-4 md:grid-rows-5 gap-4">
-            <div className="md:col-span-2 md:row-span-4 flex justify-center items-center border">
-                <div className="relative w-24 h-24 sm:w-32 sm:h-32 md:w-80 md:h-80 ">
-                    <Image
-                        src="/planets/planet-earth-internal.svg"
-                        alt="Earth"
-                        fill
-                        className="object-contain"
-                    />
+        <section className="w-full px-6 py-5 space-y-10 lg:px-20">
+
+            {/* Main Content */}
+            <div className="grid gap-8 lg:grid-cols-5 lg:items-center">
+
+                {/* Planet */}
+                <div className="flex justify-center lg:col-span-3">
+                    <div className="relative aspect-square w-52 sm:w-72 lg:w-105">
+                        <Image
+                            src={"/planets/planet-earth-internal.svg"}
+                            alt="Earth"
+                            fill
+                            className="object-contain"
+                        />
+                    </div>
                 </div>
+
+                {/* Information */}
+                <div className="flex flex-col space-y-10 lg:col-span-2">
+
+                    <div className="space-y-6 text-center lg:text-left">
+                        <h2 className="font-heading text-5xl uppercase lg:text-7xl">
+                            Earth
+                        </h2>
+
+                        <p className="max-w-lg leading-8 text-muted-foreground">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Ab cum debitis dolore est ex excepturi hic molestias non,
+                            obcaecati odit pariatur quas qui quisquam quo quod sint
+                            sit unde voluptatem.
+                        </p>
+                    </div>
+
+                    <div className="flex flex-col space-y-3 ">
+
+                        <button className="border p-4 text-left uppercase font-heading transition cursor-pointer "
+                                onClick={() => handleSectionChange("overview")}
+
+                        >
+                            01 Overview
+                        </button>
+
+                        <button className="border p-4 text-left uppercase font-heading transition cursor-pointer "
+                                onClick={() => handleSectionChange("structure")}
+
+                        >
+                            02 Internal Structure
+                        </button>
+
+                        <button className="border p-4 text-left uppercase font-heading transition cursor-pointer"
+                                onClick={() => handleSectionChange("geology")}                        >
+                            03 Surface Geology
+                        </button>
+
+                    </div>
+
+                </div>
+
             </div>
 
-            <div className="md:col-span-2 md:row-span-4 md:col-start-3 border p-10 flex flex-col justify-between">
-                {/* planet info */}
-                <div className="space-y-4 ">
-                    <h2 className="font-heading uppercase text-6xl md:text-7xl font-bold tracking-tight">Earth</h2>
+            {/* Stats */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
 
-                    <p className="font-serif text-muted-foreground leading-relaxed max-w-md">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab cum debitis
-                        dolore est ex excepturi hic molestias non, obcaecati, odit, pariatur quas
-                        qui quisquam quo quod sint sit unde voluptatem.
+                <div
+                    className="flex flex-col items-center justify-center gap-1 border-b p-4 sm:border-b-0 sm:border-r last:border-none">
+                    <p
+                        className="text-xl uppercase font-bold font-heading tracking-wider text-muted-foreground">
+                        Rotation time
+                    </p>
+                    <p className="text-3xl font-extrabold font-heading">
+                        2
                     </p>
                 </div>
 
-                {/* Mode Switcher */}
-                <div className="flex flex-col  border-t">
-                    <button
-                        className="flex-1 p-4 text-sm font-heading uppercase tracking-wide border-r text-left hover:bg-slate-800 transition-colors">
-                        01 overview
-                    </button>
-                    <button
-                        className="flex-1 p-4 text-sm font-heading uppercase tracking-wide border-r text-left hover:bg-slate-800 transition-colors">
-                        02 internal structure
-                    </button>
-                    <button
-                        className="flex-1 p-4 text-sm font-heading uppercase tracking-wide text-left hover:bg-slate-800 transition-colors">
-                        03 surface geology
-                    </button>
+
+                <div
+                    className="flex flex-col items-center justify-center gap-1 border-b p-4 sm:border-b-0 sm:border-r last:border-none">
+                    <p
+                        className="text-xl uppercase font-bold font-heading tracking-wider text-muted-foreground">
+                        Revolution time
+                    </p>
+                    <p className="text-3xl font-extrabold font-heading">
+                        2
+                    </p>
                 </div>
+
+
+                <div
+                    className="flex flex-col items-center justify-center gap-1 border-b p-4 sm:border-b-0 sm:border-r last:border-none">
+                    <p
+                        className="text-xl uppercase font-bold font-heading tracking-wider text-muted-foreground">
+                        Radius
+                    </p>
+                    <p className="text-3xl font-extrabold font-heading">
+                        2
+                    </p>
+                </div>
+
+
+                <div className="flex flex-col items-center justify-center gap-1
+                    border-b p-4 sm:border-b-0 sm:border-r last:border-none">
+                    <p className="text-xl uppercase font-bold font-heading tracking-wider text-muted-foreground">
+                        Average temp
+                    </p>
+                    <p className="text-3xl font-extrabold font-heading">
+                        2
+                    </p>
+                </div>
+
             </div>
 
-            <div className="md:col-span-4 md:row-start-5 border grid grid-cols-1 sm:grid-cols-4">
-                {/* planet status */}
-                {planetStats.map((stat) => (
-                    <StatBox key={stat.label} label={stat.label} value={stat.value}/>
-                ))}
-            </div>
         </section>
     )
 }

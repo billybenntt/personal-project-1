@@ -1,10 +1,11 @@
-import PlanetWrapper from '@/components/wrappers/planet-wrapper'
-export default function Page() {
+import PlanetWrapper from "@/components/wrappers/planet-wrapper";
+
+
+export default async function Page() {
+
   return (
-    <main className="     ">
-
-        <PlanetWrapper />
-
+    <main className="mx-auto min-h-lvh w-full text-white">
+      <PlanetWrapper  />
     </main>
   );
 }
